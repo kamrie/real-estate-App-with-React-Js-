@@ -6,6 +6,7 @@ import authRouter from './routes/auth.route.js';
 
 dotenv.config()   //initializing the 'dotenv' that was imported.
 
+console.log("MONGO =", process.env.MONGO);
 mongoose.connect(process.env.MONGO).then(() => {
     console.log("connected to DB well")
 }).catch((err) => {
@@ -22,12 +23,7 @@ app.listen(3000, () => {
 });
  
 
- app.use("/api/user", userRouter ); // this means that anytime some goes to "/api/user" file, use that .get we created there. 
-//  get('/rdr', (req, res) =>  {
-//      res.send({
-//         'message':' world'
-//     })
-//  });
+ app.use("/api/user", userRouter ); 
 app.use("/api/auth", authRouter);
 
 

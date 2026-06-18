@@ -1,7 +1,7 @@
 import User from "../Models/user.model.js"; //this was imported from the user.model.js
 import bcryptjs from 'bcryptjs'; // a package used to HASH  a password.
 import { errorHandler } from "../utils/error.js";
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
 
@@ -23,6 +23,12 @@ export const signup = async (req, res, next) => {
      }
   
 }
+ 
+//     const token  = req.cookies.acess_token
+//     jwt.verify( token,  process.env.JWT_SECRET, (err, user)  => {
+
+// })
+
 
 
 
@@ -39,7 +45,7 @@ export const signin = async (req, res, next) => {
       const token = jwt.sign({id: validUser._id }, process.env.JWT_secret  )
       const {password: pass,  ...rest}  = validUser._doc;  //the _doc was gotten from the Isomenia website.
       res  
-        .cookie('access_token', token, {httpOnly: true })
+        .cookie('access_token', token, {httpOnly: true })   //access_token is the name given to the cookie and 'httpOnly: true' is to make the 
         .status(200)
         .json(...rest);
 
@@ -50,6 +56,6 @@ export const signin = async (req, res, next) => {
    }
 
 }
-
+   
 
   
